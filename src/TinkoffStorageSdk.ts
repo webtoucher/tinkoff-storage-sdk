@@ -60,7 +60,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async listObjects(params: ListObjectsParams) {
+    public async listObjects(params: ListObjectsParams = {}) {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.listObjects(preparedParams, (err, data) => {
