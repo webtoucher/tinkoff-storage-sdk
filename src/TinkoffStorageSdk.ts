@@ -137,4 +137,8 @@ export default class TinkoffStorageSdk {
             })
         })
     }
+
+    public getObjectPath({ Key }: { Key: string }) {
+        return `storage://s3.api.tinkoff.ai/inbound/${Key}`
+    }
 }
