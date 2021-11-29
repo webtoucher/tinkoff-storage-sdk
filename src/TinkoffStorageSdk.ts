@@ -4,6 +4,7 @@ const { Endpoint } = AWS
 
 export type AbortMultipartUploadParams = Omit<S3.AbortMultipartUploadRequest, 'Bucket'>
 export type CompleteMultipartUploadParams = Omit<S3.CompleteMultipartUploadRequest, 'Bucket'>
+export type CreateMultipartUploadParams = Omit<S3.CreateMultipartUploadRequest, 'Bucket'>
 export type HeadObjectParams = Omit<S3.HeadObjectRequest, 'Bucket'>
 export type ListObjectsParams = Omit<S3.ListObjectsRequest, 'Bucket'>
 export type PutObjectParams = Omit<S3.PutObjectRequest, 'Bucket'>
@@ -86,7 +87,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async createMultipartUpload(params: PutObjectParams) {
+    public async createMultipartUpload(params: CreateMultipartUploadParams) {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.createMultipartUpload(preparedParams, (err, data) => {
