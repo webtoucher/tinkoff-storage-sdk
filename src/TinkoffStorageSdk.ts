@@ -87,6 +87,19 @@ export default class TinkoffStorageSdk {
         })
     }
 
+    public async upload(params: PutObjectParams): Promise<S3.PutObjectOutput> {
+        const preparedParams = Object.assign(params, { Bucket })
+        return await new Promise((resolve, reject) => {
+            this.s3.upload(preparedParams, (err, data) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(data)
+                }
+            })
+        })
+    }
+
     public async createMultipartUpload(params: CreateMultipartUploadParams): Promise<S3.CreateMultipartUploadOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
