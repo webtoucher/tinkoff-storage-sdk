@@ -24,7 +24,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async getBucketLocation() {
+    public async getBucketLocation(): Promise<S3.GetBucketLocationOutput> {
         return await new Promise((resolve, reject) => {
             this.s3.getBucketLocation((err, data) => {
                 if (err) {
@@ -36,7 +36,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async getBucketVersioning() {
+    public async getBucketVersioning(): Promise<S3.GetBucketVersioningOutput> {
         return await new Promise((resolve, reject) => {
             this.s3.getBucketVersioning((err, data) => {
                 if (err) {
@@ -48,7 +48,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async headObject(params: HeadObjectParams) {
+    public async headObject(params: HeadObjectParams): Promise<S3.HeadObjectOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.headObject(preparedParams, (err, data) => {
@@ -61,7 +61,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async listObjects(params: ListObjectsParams = {}) {
+    public async listObjects(params: ListObjectsParams = {}): Promise<S3.ListObjectsOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.listObjects(preparedParams, (err, data) => {
@@ -74,7 +74,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async putObject(params: PutObjectParams) {
+    public async putObject(params: PutObjectParams): Promise<S3.PutObjectOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.putObject(preparedParams, (err, data) => {
@@ -87,7 +87,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async createMultipartUpload(params: CreateMultipartUploadParams) {
+    public async createMultipartUpload(params: CreateMultipartUploadParams): Promise<S3.CreateMultipartUploadOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.createMultipartUpload(preparedParams, (err, data) => {
@@ -100,7 +100,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async uploadPart(params: UploadPartParams) {
+    public async uploadPart(params: UploadPartParams): Promise<S3.UploadPartOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.uploadPart(preparedParams, (err, data) => {
@@ -113,7 +113,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async completeMultipartUpload(params: CompleteMultipartUploadParams) {
+    public async completeMultipartUpload(params: CompleteMultipartUploadParams): Promise<S3.CompleteMultipartUploadOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.completeMultipartUpload(preparedParams, (err, data) => {
@@ -126,7 +126,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public async abortMultipartUpload(params: AbortMultipartUploadParams) {
+    public async abortMultipartUpload(params: AbortMultipartUploadParams): Promise<S3.AbortMultipartUploadOutput> {
         const preparedParams = Object.assign(params, { Bucket })
         return await new Promise((resolve, reject) => {
             this.s3.abortMultipartUpload(preparedParams, (err, data) => {
@@ -139,7 +139,7 @@ export default class TinkoffStorageSdk {
         })
     }
 
-    public getObjectPath({ Key }: { Key: string }) {
+    public getObjectPath({ Key }: { Key: string }): string {
         return `storage://s3.api.tinkoff.ai/inbound/${Key}`
     }
 }
